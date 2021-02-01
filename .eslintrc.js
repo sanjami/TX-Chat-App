@@ -47,5 +47,6 @@ module.exports = {
 			1,
 			'always',
 		],
+		'no-underscore-dangle': ['error', { allow: ['__REDUX_DEVTOOLS_EXTENSION__', '_id'] }],
 	},
 };

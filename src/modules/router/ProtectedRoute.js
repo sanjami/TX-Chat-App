@@ -8,7 +8,7 @@ type Props = {
 }
 
 // If the user doesn't exist redirect to the login
-const ProtectedRoute = (props: Props) => {
+const ProtectedRoute = (props: Props): any => {
 	const { component: Component } = props;
 	const author = localStorage.getItem('myChatUsername');
 
