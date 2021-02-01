@@ -3,8 +3,10 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import AuthService from '../../lib/helpers/AuthService';
+// import styles
+import styles from './assets/title.module.scss';
 
-const Title = () => {
+const Title = (): any => {
 	const [
 		redirectToLogin,
 		setRedirectToLogin,
@@ -22,18 +24,18 @@ const Title = () => {
 	}
 
 	return (
-		<div>
+		<div className={styles.title}>
 			{author
 				? (
-					<div>
+					<div className={styles.welcome}>
 						<p>{`Welcome, ${author}`}</p>
-						<button onClick={handleLogout} type="button">
+						<button type="submit" onClick={handleLogout}>
 							Sign out
 						</button>
 					</div>
 				)
 				: (
-					<div>
+					<div className={styles.welcome}>
 						<p>You are not logged in, enter your username to be able to send messages</p>
 					</div>
 				)}

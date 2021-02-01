@@ -5,6 +5,8 @@ import { Redirect } from 'react-router-dom';
 import AuthService from '../../lib/helpers/AuthService';
 // import components
 import Title from '../../components/Title/index';
+// import styles
+import styles from '../Chat/assets/chat.module.scss';
 
 type Props = {
 	history: {
@@ -46,20 +48,22 @@ function Login(props: Props): any {
 	return (
 		<>
 			<Title />
-			<div>
-				<form onSubmit={handleLogin}>
-					<input
-						placeholder="Enter username"
-						onChange={handleUserName}
-						required
-						maxLength="64"
-					/>
-					<button
-						type="submit"
-					>
-						Log in
-					</button>
-				</form>
+			<div className={styles.login}>
+				<div className={styles.footer}>
+					<div className={styles.newMessage}>
+						<form onSubmit={handleLogin}>
+							<input
+								placeholder="Enter username"
+								onChange={handleUserName}
+								required
+								maxLength="64"
+							/>
+							<button type="submit">
+								Log in
+							</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</>
 	);
