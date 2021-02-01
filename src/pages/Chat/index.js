@@ -23,15 +23,6 @@ type Props = {
 	sendMessage: (Value) => void,
 }
 
-const formatDate = (timestamp: number) => {
-	// var result="";
-	const options = {
-		year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric',
-	};
-	const res = new Intl.DateTimeFormat('default', options).format(timestamp);
-	return res;
-};
-
 function Chat(props: Props): any {
 	const {
 		messages,
@@ -72,6 +63,19 @@ function Chat(props: Props): any {
 		getRecentMessages();
 	}, [refreshTime]);
 
+	// get 10 messages, simulate life reload, get 10 more messages on every 10s
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			const t = new Date();
+			setRefreshTime(t - 10000);
+		}, 10000000000);
+
+		return () => {
+			clearTimeout(timeout);
+		};
+	});
+
 	useEffect(() => {
 		scrollToBottom();
 	}, [messages]);
@@ -88,8 +92,18 @@ function Chat(props: Props): any {
 		e.preventDefault();
 		const data: Value = { message, author };
 		await sendMessageAction(data);
+		setMessage('');
 		setRefreshTime(Date.now());
 		setMessageSent(!messageSent);
+	};
+
+	const formatDate = (timestamp: number) => {
+		const locale: string = window.navigator.userLanguage || window.navigator.language;
+		const options = {
+			year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric',
+		};
+		const res = new Intl.DateTimeFormat(locale, options).format(timestamp);
+		return res;
 	};
 
 	return (
@@ -99,7 +113,7 @@ function Chat(props: Props): any {
 				<div className={styles.messages}>
 					{messages.map((el) => (
 						<div key={el._id} className={el.author === author ? `${styles.msg} ${styles.owner}` : `${styles.msg} ${styles.guest}`}>
-							<p className={styles.sender}>{el.author}</p>
+							{el.author !== author && <p className={styles.sender}>{el.author}</p>}
 							<p className={styles.content}>{el.message}</p>
 							<p className={styles.sender}>{formatDate(el.timestamp)}</p>
 						</div>
@@ -114,6 +128,7 @@ function Chat(props: Props): any {
 								onChange={handleMessageInput}
 								required
 								maxLength="256"
+								value={message}
 							/>
 							<button
 								type="submit"

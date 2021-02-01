@@ -20,19 +20,27 @@
         border: $message-border;
         background-color: $text-color;
         word-break: break-word;
+        p {
+            margin: 8px;
+        }
     }
     .guest {
         margin-right: auto;
     }
     .owner {
         margin-left: auto;
+        background-color: $author-message-background;
+        .sender {
+            color: $light-text-color;
+            text-align: right;
+        }
     }
     .sender {
-        color: #b3bcc2;
+        color: $light-text-color;
     }
     .content {
         font-size: 1.5em;
-        color: #454e56;
+        color: $message-text-color;
     }
 }
 
@@ -53,9 +61,10 @@
         margin: 0 auto;
         input {
             border-radius: $message-border-radius;
-            height: 48px;
+            border: 2px solid $input-color;
+            color: $input-color;
+            height: 44px;
             flex: 4;
-            border: none;
             padding-left: 24px;
         }
         button {
