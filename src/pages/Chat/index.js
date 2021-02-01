@@ -6,13 +6,31 @@ import { connect } from 'react-redux';
 import Title from '../../components/Title/index';
 // import actions
 import { getMessages, getTimeMessages, sendMessage } from '../../modules/actions/MessagesActions';
+// import types
+import type { State } from '../../modules/constants/flowTypes';
+import type { Message } from '../../modules/reducers/MessagesReducer';
+// import styles
+import styles from './assets/chat.module.scss';
 
+type Value = {
+	message: string,
+	author: string,
+}
 type Props = {
-	messages: Array<Object>,
+	messages: Array<Message>,
 	getMessages: () => void;
 	getTimeMessages: (number) => void,
-	sendMessage: ({[string]: string}) => void,
+	sendMessage: (Value) => void,
 }
+
+const formatDate = (timestamp: number) => {
+	// var result="";
+	const options = {
+		year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric',
+	};
+	const res = new Intl.DateTimeFormat('default', options).format(timestamp);
+	return res;
+};
 
 function Chat(props: Props): any {
 	const {
@@ -28,7 +46,7 @@ function Chat(props: Props): any {
 
 	const messageEnd = useRef(null);
 
-	const author = localStorage.getItem('myChatUsername');
+	const author = localStorage.getItem('myChatUsername') || '';
 
 	const scrollToBottom = () => {
 		messageEnd?.current?.scrollIntoView({ behavior: 'smooth' });
@@ -68,43 +86,49 @@ function Chat(props: Props): any {
 
 	const submitMessage = async (e) => {
 		e.preventDefault();
-		const data = { message, author };
-		const res = await sendMessageAction(data);
-		console.log(res);
+		const data: Value = { message, author };
+		await sendMessageAction(data);
 		setRefreshTime(Date.now());
 		setMessageSent(!messageSent);
 	};
 
 	return (
-		<div>
+		<>
 			<Title />
-			{messages.map((el) => (
-				<div key={el._id}>
-					<p>{el.author}</p>
-					<p>{el.message}</p>
-					<p>{el.timestamp}</p>
+			<div className={styles.chat}>
+				<div className={styles.messages}>
+					{messages.map((el) => (
+						<div key={el._id} className={el.author === author ? `${styles.msg} ${styles.owner}` : `${styles.msg} ${styles.guest}`}>
+							<p className={styles.sender}>{el.author}</p>
+							<p className={styles.content}>{el.message}</p>
+							<p className={styles.sender}>{formatDate(el.timestamp)}</p>
+						</div>
+					))}
+					<div style={{ float: 'left', clear: 'both' }} ref={messageEnd} />
 				</div>
-			))}
-			<div>
-				<form onSubmit={submitMessage}>
-					<input
-						placeholder="Message"
-						onChange={handleMessageInput}
-						required
-						maxLength="256"
-					/>
-					<button
-						type="submit"
-					>
-						Send
-					</button>
-				</form>
+				<div className={styles.footer}>
+					<div className={styles.newMessage}>
+						<form onSubmit={submitMessage}>
+							<input
+								placeholder="Message"
+								onChange={handleMessageInput}
+								required
+								maxLength="256"
+							/>
+							<button
+								type="submit"
+							>
+								Send
+							</button>
+						</form>
+					</div>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: State) => ({
 	messages: state.messages.messages,
 });
 

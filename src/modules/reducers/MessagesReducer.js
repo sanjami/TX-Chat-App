@@ -4,14 +4,14 @@ const initialState = {
 	messages: [],
 	loading: false,
 };
-type Message = {
+export type Message = {
 	author: string,
 	message: string,
 	timestamp: string,
 	token: string,
 	_id: string,
 }
-type State = {
+export type MessageState = {
 	messages: Array<Message>,
 	loading: boolean,
 }
@@ -39,7 +39,7 @@ type Action = MessageAction | MessagesAction;
 
 // fake reducer until response from the backend
 
-function messagesReducer(state: State = initialState, action: Action): State {
+function messagesReducer(state: MessageState = initialState, action: Action): MessageState {
 	switch (action.type) {
 	case 'GET_MESSAGES':
 		return {

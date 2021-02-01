@@ -1,0 +1,8 @@
+// Import all scss files into one
+
+// base
+@import "./base.scss";
+// chat
+@import "../../pages/Chat/assets/chat.module.scss";
+// title
+@import "../../components/Title/assets/title.module.scss";

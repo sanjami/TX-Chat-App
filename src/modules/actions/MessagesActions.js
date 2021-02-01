@@ -6,7 +6,7 @@ import {
 	SEND_MESSAGE,
 } from '../constants/type';
 
-const token: string = process.env.REACT_APP_MY_AWESOME_UNIQUE_TOKEN;
+const token: string = process.env.REACT_APP_MY_AWESOME_UNIQUE_TOKEN || '';
 
 export function getMessages(): function {
 	return (dispatch): void => dispatch({
