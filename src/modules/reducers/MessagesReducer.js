@@ -35,7 +35,7 @@ type MessagesAction = {
 		data: Array<Message>,
 	},
 }
-type Action = MessageAction | MessagesAction;
+export type Action = MessageAction | MessagesAction;
 
 // fake reducer until response from the backend
 

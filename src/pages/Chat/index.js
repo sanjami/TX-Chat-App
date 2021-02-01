@@ -1,6 +1,7 @@
 // @flow
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import type { Element } from 'react';
 import { connect } from 'react-redux';
 // import components
 import Title from '../../components/Title/index';
@@ -23,7 +24,7 @@ type Props = {
 	sendMessage: (Value) => void,
 }
 
-function Chat(props: Props): any {
+function Chat(props: Props): Element<any> {
 	const {
 		messages,
 		getMessages: getMessagesAction,
@@ -69,7 +70,7 @@ function Chat(props: Props): any {
 		const timeout = setTimeout(() => {
 			const t = new Date();
 			setRefreshTime(t - 10000);
-		}, 10000000000);
+		}, 10000);
 
 		return () => {
 			clearTimeout(timeout);
@@ -96,6 +97,8 @@ function Chat(props: Props): any {
 		setRefreshTime(Date.now());
 		setMessageSent(!messageSent);
 	};
+
+	// format time to local date/time format
 
 	const formatDate = (timestamp: number) => {
 		const locale: string = window.navigator.userLanguage || window.navigator.language;

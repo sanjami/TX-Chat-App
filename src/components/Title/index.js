@@ -1,18 +1,19 @@
 // @flow
 
 import React, { useState } from 'react';
+import type { Element } from 'react';
 import { Redirect } from 'react-router-dom';
 import AuthService from '../../lib/helpers/AuthService';
 // import styles
 import styles from './assets/title.module.scss';
 
-const Title = (): any => {
+const Title = (): Element<any> => {
 	const [
 		redirectToLogin,
 		setRedirectToLogin,
 	] = useState(false);
 
-	const author = localStorage.getItem('myChatUsername');
+	const author: string = localStorage.getItem('myChatUsername') || '';
 
 	const handleLogout = async () => {
 		await AuthService.signOut();
