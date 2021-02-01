@@ -1,11 +1,28 @@
+@import "./variable.scss";
+
 body {
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
 	position: relative;
+	padding: 0;
+	margin: 0;
 }
 
 .container {
 	height: calc(100vh - 80px);
     position: relative;
 }
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+	color: $light-text-color
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+	color: $light-text-color
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+	color: $light-text-color
+  }
+  :-moz-placeholder { /* Firefox 18- */
+	color: $light-text-color
+  }
