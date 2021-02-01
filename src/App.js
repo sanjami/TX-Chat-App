@@ -3,7 +3,7 @@
 import React from 'react';
 import Router from './modules/router/index';
 
-function App() {
+function App(): any {
 	return (
 		<div>
 			<Router />

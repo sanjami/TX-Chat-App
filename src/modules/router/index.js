@@ -6,7 +6,7 @@ import Chat from '../../pages/Chat';
 import Login from '../../pages/Login';
 import ProtectedRoute from './ProtectedRoute';
 
-export default function Router() {
+export default function Router(): any {
 	return (
 		<Switch>
 			<Route path="/login" exact component={Login} />
