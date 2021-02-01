@@ -1,6 +1,7 @@
 // @flow
 
 import React, { useState, useEffect } from 'react';
+import type { Element } from 'react';
 import { Redirect } from 'react-router-dom';
 import AuthService from '../../lib/helpers/AuthService';
 // import components
@@ -13,14 +14,14 @@ type Props = {
 		push: (string) => void,
 	}
 }
-function Login(props: Props): any {
+function Login(props: Props): Element<any> {
 	const [redirect, setRedirect] = useState(false);
 	const [userName, setUserName] = useState('');
 
 	// If the user exist redirect to the chat
 
 	useEffect(() => {
-		const author = localStorage.getItem('myChatUsername');
+		const author: string = localStorage.getItem('myChatUsername') || '';
 		if (author) {
 			props.history.push('/');
 		}

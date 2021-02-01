@@ -7,6 +7,7 @@ body {
 	position: relative;
 	padding: 0;
 	margin: 0;
+	font-family: 'Fira Sans', sans-serif;
 }
 
 .container {
@@ -15,14 +16,22 @@ body {
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-	color: $light-text-color
+	color: $light-text-color;
+	font-size: $text-font-size;
+	line-height: 44px;
   }
   ::-moz-placeholder { /* Firefox 19+ */
-	color: $light-text-color
+	color: $light-text-color;
+	font-size: $text-font-size;
+	line-height: 44px;
   }
   :-ms-input-placeholder { /* IE 10+ */
-	color: $light-text-color
+	color: $light-text-color;
+	font-size: $text-font-size;
+	line-height: 44px;
   }
   :-moz-placeholder { /* Firefox 18- */
-	color: $light-text-color
+	color: $light-text-color;
+	font-size: $text-font-size;
+	line-height: 44px;
   }

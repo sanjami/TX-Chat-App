@@ -19,7 +19,7 @@ export function getMessages(): function {
 	});
 }
 
-export function getTimeMessages(time: string):function {
+export function getTimeMessages(time: string): function {
 	return (dispatch): void => dispatch({
 		type: GET_TIME_MESSAGES,
 		payload: {
@@ -30,7 +30,7 @@ export function getTimeMessages(time: string):function {
 	});
 }
 
-export function sendMessage(data: {[string]: string}):function {
+export function sendMessage(data: {[string]: string}): function {
 	return (dispatch): void => dispatch({
 		type: SEND_MESSAGE,
 		payload: {

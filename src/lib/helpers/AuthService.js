@@ -1,5 +1,7 @@
+// @flow
+
 class AuthService {
-	static async storeUser(userName) {
+	static async storeUser(userName: string) {
 		try {
 			await localStorage.setItem('myChatUsername', userName);
 		} catch (error) {

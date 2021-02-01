@@ -22,6 +22,7 @@
         word-break: break-word;
         p {
             margin: 8px;
+            letter-spacing: 1px;
         }
     }
     .guest {
@@ -37,9 +38,10 @@
     }
     .sender {
         color: $light-text-color;
+        font-size: $text-font-size
     }
     .content {
-        font-size: 1.5em;
+        font-size: 30px;
         color: $message-text-color;
     }
 }
@@ -65,7 +67,8 @@
             color: $input-color;
             height: 44px;
             flex: 4;
-            padding-left: 24px;
+            padding-left: 8px;
+            font-size: $text-font-size
         }
         button {
             background-color: $button-background;
@@ -76,6 +79,7 @@
             height: 48px;
             flex: 1;
             font-weight: 600;
+            font-size: $text-font-size;
         }
     }
 }
