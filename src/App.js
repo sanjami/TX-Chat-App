@@ -1,13 +1,14 @@
-import './App.css';
+// @flow
+
+import React from 'react';
+import Router from './modules/router/index';
 
 function App() {
-  return (
-    <div>
-      <header>
-        My Chat App
-      </header>
-    </div>
-  );
+	return (
+		<div>
+			<Router />
+		</div>
+	);
 }
 
 export default App;
